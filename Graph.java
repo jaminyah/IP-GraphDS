@@ -1,24 +1,27 @@
 package graph;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Graph {
     int numVertices;
-    HashMap<String, Vertex> vertexMap;
+    List<ArrayList<Vertex>> list;
+    ArrayList<Vertex> vertices;
 
     Graph() {
         this.numVertices = 0;
-        this.vertexMap = new HashMap<>();
+        this.list = new ArrayList<>();
+        this.vertices = new ArrayList<>();
     }
 
-    void addVertex(String node) {
+    void addNode(String node) {
         numVertices += 1;
-        Vertex vertex = new Vertex(node);
-        
-        if (!vertexMap.containsKey(node)) {
-            vertexMap.put(node, vertex);
+        Vertex newVertex = new Vertex(node);
+        if (!vertices.contains(newVertex)) {
+            vertices.add(newVertex);
+            list.add(new ArrayList<>());
         }
     }
 
@@ -27,7 +30,7 @@ public class Graph {
         Set<String> set = new HashSet<>();
         Vertex vertex = new Vertex(node);
 
-        if (vertexMap.containsKey(node)) {
+        if (vertices.contains(vertex)) {
             set = vertex.connections();
         }
         return set;
@@ -36,33 +39,18 @@ public class Graph {
     // Add edge to node without weight
     void addEdge(String fromNode, String toNode) {
 
-        Integer cost = 0;
-        if (!vertexMap.containsKey(fromNode)) {
-            this.addVertex(fromNode);
-        }
-        if (!vertexMap.containsKey(toNode)) {
-            this.addVertex(toNode);
-        }
-        // Undirected so add in both directions.
-        vertexMap.get(fromNode).addNeighbor(toNode, cost);
-        vertexMap.get(toNode).addNeighbor(fromNode, cost);
     }  
 
     // Add edge to node with weight
-    void addEdge(String fromNode, String toNode, Integer cost) {
-        if (!vertexMap.containsKey(fromNode)) {
-            this.addVertex(fromNode);
-        }
-        if (!vertexMap.containsKey(toNode)) {
-            this.addVertex(toNode);
-        }
-        // Undirected so add in both directions.
-        vertexMap.get(fromNode).addNeighbor(toNode, cost);
-        vertexMap.get(toNode).addNeighbor(fromNode, cost);
+    void addEdge(String fromNode, String toNode, Integer weight) {
+
     }
 
     // Get vertices connected to node
-    Set<String> vertexList() {
-        return vertexMap.keySet();
+    Set<String> nodeList() {
+        Set<String> set = new HashSet<>();
+
+        return set;
     }
-} // Graph
+
+}

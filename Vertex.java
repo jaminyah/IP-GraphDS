@@ -33,7 +33,8 @@ final class Vertex {
         return adjacent.get(node);
     }
 
-    public String showConnections() {
+    @Override
+    public String toString() {
 
         StringBuilder builder = new StringBuilder();
         builder.append(this.node);
@@ -43,6 +44,7 @@ final class Vertex {
             builder.append(key);
             builder.append(", ");
         }
+
         return builder.toString();
     }
 
