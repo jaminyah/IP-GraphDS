@@ -1,1 +1,1 @@
-Graph data structure abstract data type.
+Graph data structure based on https://www.bogotobogo.com python implementation.
